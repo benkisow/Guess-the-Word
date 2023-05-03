@@ -1,5 +1,5 @@
 // Create a list of words and pick one
-var wordList = ['ABDUCT','BOARD', 'BUSINESS','CAMERA','DRUG','EDUCATION','FIELD','GUESS','HEAT','INVOLVE','JOIN','KITCHEN','LATER','METHOD','MONEY','NUMBER','OFTEN','PARENT','RESULT','SECOND','SEND','TEAM','THANK','VICTIM','WEAR','WRITER','YOUNG','YOURSELF','JAZZ']
+var wordList = ['ABDUCT','BOARD','CAMERA','DRUG','FIELD','GUESS','HEAT','JOIN','LATER','METHOD','MONEY','NUMBER','OFTEN','PARENT','RESULT','SECOND','SEND','TEAM','THANK','VICTIM','WEAR','WRITER','YOUNG','JAZZ']
 
 var correctWord;
 
@@ -284,7 +284,7 @@ function checkGuess() {
 
 			wordContainer.replaceChildren();
 
-			var winnerMessage = 'WINNER!';
+			var winnerMessage = 'WINNER';
 
 			// CREATE TILE FOR EACH LETTER (DIV)
 			// CREATE SPAN WITHIN EACH DIV TO HOLD THE LETTER W/ DISPLAY: NONE
