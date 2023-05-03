@@ -7,16 +7,6 @@ var numberOfGuesses;
 var gameWon;
 var flipEnabled;
 
-//when window changes size, change font size of input
-window.onresize = function(event) {
-    document.getElementById("guess-input").style.fontSize = (document.getElementById("guess-input").offsetHeight*0.7) + "px";
-};
-
-//when page loads make text fit text box
-function myFunction(){
-	document.getElementById("guess-input").style.fontSize = (document.getElementById("guess-input").offsetHeight*0.7) + "px";
-}
-
 // For shuffling the letters
 String.prototype.shuffle = function() {
 	var a = this.split(""),
