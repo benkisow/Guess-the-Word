@@ -185,11 +185,11 @@ header {
 	margin: 10px auto 0 auto;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 570px) {
 	.letter-card, .winner-letter-card {
-		width: 58px;
-		height: calc(56px * 1.5);
-		font-size: 56px;
+		width: 54px;
+		height: calc(52px * 1.5);
+		font-size: 52px;
 		margin: 0 8px;
 		background-color: aqua;
 	}
@@ -197,9 +197,9 @@ header {
 
 @media only screen and (max-width: 500px) {
 	.letter-card, .winner-letter-card {
-		width: 48px;
-		height: calc(46px * 1.5);
-		font-size: 46px;
+		width: 44px;
+		height: calc(42px * 1.5);
+		font-size: 42px;
 		margin: 0 6px;
 		background-color: yellow;
 	}
@@ -207,10 +207,10 @@ header {
 
 @media only screen and (max-width: 400px) {
 	.letter-card, .winner-letter-card {
-		width: 36px;
-		height: calc(34px * 1.5);
-		font-size: 34px;
-		margin: 0 6px;
+		width: 42px;
+		height: calc(40px * 1.5);
+		font-size: 40px;
+		margin: 0 4px;
 		background-color: purple;
 	}
 }
