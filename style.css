@@ -111,7 +111,8 @@ header {
 }
 
 #guess-input {
-	font-size: 3em;
+	font-size: 48px;
+	max-width: 95vw;
 	text-align: center;
 	text-transform: uppercase;
 	background-color: rgb(34, 42, 53);
