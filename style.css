@@ -191,7 +191,6 @@ header {
 		height: calc(52px * 1.5);
 		font-size: 52px;
 		margin: 0 8px;
-		background-color: aqua;
 	}
 }
 
@@ -201,7 +200,6 @@ header {
 		height: calc(42px * 1.5);
 		font-size: 42px;
 		margin: 0 6px;
-		background-color: yellow;
 	}
 }
 
@@ -211,7 +209,6 @@ header {
 		height: calc(40px * 1.5);
 		font-size: 40px;
 		margin: 0 4px;
-		background-color: purple;
 	}
 }
 
@@ -221,6 +218,5 @@ header {
 		height: calc(34px * 1.5);
 		font-size: 34px;
 		margin: 0 4px;
-		background-color: green;
 	}
 }
