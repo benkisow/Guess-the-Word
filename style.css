@@ -21,7 +21,7 @@ header {
 	width: 90%;
 	left: 5%;
 	margin: 0 auto 40px auto;
-	height: 100%;
+	height: auto;
 	position: fixed;
 	text-align: center;
 }
@@ -43,7 +43,8 @@ header {
 #guess-container {
 	/*border: 1px solid pink;*/
 	position: relative;
-	height: 60%;
+	width: 100%;
+	height: auto;
 	text-align: center;
 }
 /*
