@@ -188,15 +188,15 @@ header {
 @media only screen and (max-width: 600px) {
 	.letter-card, .winner-letter-card {
 		width: 48px;
-		height: 70px;
+		height: calc(44px * 1.5);
 		font-size: 44px;
 	}
 }
 
 @media only screen and (max-width: 400px) {
 	.letter-card, .winner-letter-card {
-		width: 40px;
-		height: 60px;
-		font-size: 36px;
+		width: 36px;
+		height: calc(32px * 1.5);
+		font-size: 32px;
 	}
 }
