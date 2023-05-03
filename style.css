@@ -113,7 +113,8 @@ header {
 
 #guess-input {
 	font-size: 48px;
-	width: 600px;
+	width: auto;
+	max-width: 90%;
 	text-align: center;
 	text-transform: uppercase;
 	background-color: rgb(34, 42, 53);
@@ -122,6 +123,8 @@ header {
 	border-radius: 8px;
 	caret-color: transparent;
 }
+
+
 
 #guess-table {
 	width: 50%;
