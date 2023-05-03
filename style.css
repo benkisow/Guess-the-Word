@@ -130,8 +130,6 @@ header {
 	caret-color: transparent;
 }
 
-
-
 #guess-table {
 	width: 50%;
 	margin: 20px auto;
@@ -157,7 +155,7 @@ header {
 }
 
 .guess-flipped-letters {
-	text-align: left;
+	text-align: right;
 	width: 30%;
 }
 
