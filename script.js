@@ -21,6 +21,10 @@ String.prototype.shuffle = function() {
     return a.join("");
 }
 
+window.onload = function() {
+	startGame();
+}
+
 //var numFlippedCards = 0;
 
 function startGame() {
