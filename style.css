@@ -102,10 +102,6 @@ header {
 	width: 60px;
 }
 
-#guess-btn {
-	
-}
-
 .correct-letter {
 	color: green;
 }
@@ -115,7 +111,7 @@ header {
 }
 
 #guess-input {
-	font-size: 48px;
+	font-size: 3em;
 	text-align: center;
 	text-transform: uppercase;
 	background-color: rgb(34, 42, 53);
