@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta lang="en">
+
+	<title>Guess the Word</title>
+
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<script type="text/javascript" src="script.js"></script>
+
+</head>
+<body onload="startGame();">
+
+	<!-- Header -->
+	<header>
+		<h1>Guess the Word</h1>
+		<p>In Guess the Word, a random word is selected whenever you load the page. Tiles appear for each letter of the chosen word. The tiles are in random order, NOT the order of the word! Try to guess the word by flipping over as few tiles as possible!</p>
+		<br>
+		<h4>Rules</h4>
+		<ol>
+			<li>You may only flip one tile at a time without guessing</li>
+			<li>You may guess as many times as you'd like without flipping a tile</li>
+		</ol>
+	</header>
+
+	<!-- Main container -->
+	<div id="main-container">
+
+		<span id="message" class="normal-message">Start by making a guess or choosing a tile to flip</span>
+		<br>
+		<button id="play-again-btn" onclick="startGame();">Play Again</button>
+
+		<!-- Container for the word to live in -->
+		<div id="word-container">
+		</div>
+
+		<div id="guess-container">
+			<input type="text" id="guess-input" placeholder="Guess a word..." oninput="onInput(this);"/>
+			<br>
+			<button id="guess-btn" onclick="checkGuess();">Enter</button>
+		</div>
+
+	</div>
+
+</body>
+</html>
+
+<!-- Concept
+	1. Random word is chosen
+	2. You know how many letters, but not which ones
+	3. First letter is flipped
+	4. Guess a n letter word with that letter
+	5. If wrong, flip another one
+
+	Ideas
+	1. Whole screen red/green when you lose/win
+	2. Have sound/have a voice say something
+	3. Different levels of difficulty (word length, difficulty) m,
+-->

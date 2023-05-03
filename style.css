@@ -1,0 +1,179 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: rgb(57, 71, 89);
+	color: white;
+	font-family: arial;
+}
+
+header {
+	margin-bottom: 20px;
+	padding: 10px;
+	border-bottom: 1px solid gray;
+}
+
+/* ID's and Classes */
+#main-container {
+	/*border: 1px solid red;*/
+	width: 90%;
+	left: 5%;
+	margin: 0 auto 40px auto;
+	height: 100%;
+	position: fixed;
+	text-align: center;
+}
+
+#word-container {
+	/*border: 1px solid blue;*/
+	position: relative;
+	top: 0;
+	width: 100%;
+	height: 40%;
+	padding: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+#guess-container {
+	/*border: 1px solid pink;*/
+	position: relative;
+	height: 60%;
+	text-align: center;
+}
+/*
+.letter-card {
+	border: 1px solid green;
+	height: fit-content;
+	margin: auto 10px;
+	text-align: center;
+	padding: 10px;
+	flex: 1;
+} */
+
+.letter-card {
+	display: inline-flex;
+	margin: 0 10px;
+	height: 90px;
+	font-size: 60px;
+	width: 62px;
+	border-radius: 4px;
+	justify-content: center;
+	align-content: center;
+	flex-wrap: wrap;
+	color: transparent;
+	background-color: rgb(34, 42, 53);
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+.winner-letter-card {
+	display: inline-flex;
+	margin: 0 10px;
+	height: 90px;
+	font-size: 60px;
+	width: 62px;
+	border-radius: 4px;
+	justify-content: center;
+	align-content: center;
+	flex-wrap: wrap;
+	color: white;
+	background-color: green;
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+.flipped-letter {
+	color: white;
+	background-color: rgb(255, 102, 0);
+}
+
+.flip-btn {
+	height: 24px;
+	width: 60px;
+}
+
+#guess-btn {
+	
+}
+
+.correct-letter {
+	color: green;
+}
+
+.wrong-letter {
+	color: red;
+}
+
+#guess-input {
+	font-size: 48px;
+	text-align: center;
+	text-transform: uppercase;
+	background-color: rgb(34, 42, 53);
+	color: white;
+	border: 2px solid gray;
+	border-radius: 8px;
+	caret-color: transparent;
+}
+
+#guess-table {
+	width: 50%;
+	margin: 20px auto;
+	border-collapse: collapse;
+}
+
+#guess-table tr {
+	border-bottom: 1px solid white;
+}
+
+.guess-num {
+	color: gray;
+	text-align: left;
+	width: 25%;
+}
+
+.guess-value {
+	width: 45%;
+}
+
+.correct-guess {
+	color: green;
+}
+
+.guess-flipped-letters {
+	text-align: left;
+	width: 30%;
+}
+
+#message {
+	margin: 10px 0;
+}
+
+.normal-message {
+	color: white;
+}
+
+.red-message {
+	color: rgb(255, 102, 0);
+	font-weight: bold;
+}
+
+.green-message {
+	color: green;
+	font-weight: bold;
+}
+
+#play-again-btn {
+	display: none;
+	width: 120px;
+	margin: 10px auto 0 auto;
+}
