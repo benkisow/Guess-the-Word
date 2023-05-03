@@ -187,16 +187,36 @@ header {
 
 @media only screen and (max-width: 600px) {
 	.letter-card, .winner-letter-card {
+		width: 58px;
+		height: calc(56px * 1.5);
+		font-size: 56px;
+		margin: 0 8px;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.letter-card, .winner-letter-card {
 		width: 48px;
-		height: calc(44px * 1.5);
-		font-size: 44px;
+		height: calc(46px * 1.5);
+		font-size: 46px;
+		margin: 0 6px;
 	}
 }
 
 @media only screen and (max-width: 400px) {
 	.letter-card, .winner-letter-card {
 		width: 36px;
-		height: calc(32px * 1.5);
-		font-size: 32px;
+		height: calc(34px * 1.5);
+		font-size: 34px;
+		margin: 0 6px;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+	.letter-card, .winner-letter-card {
+		width: 36px;
+		height: calc(34px * 1.5);
+		font-size: 34px;
+		margin: 0 4px;
 	}
 }
