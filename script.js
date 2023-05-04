@@ -28,6 +28,9 @@ window.onload = function() {
 //var numFlippedCards = 0;
 
 function startGame() {
+	document.getElementById('guess-input').style.display = 'block';
+	document.getElementById('guess-btn').style.display = 'block';
+
 	var numberOfWords = wordList.length;
 	var randomNumber = Math.floor(Math.random() * numberOfWords);
 
@@ -101,72 +104,10 @@ function startGame() {
 
 		wordContainer.appendChild(letterCard);
 
-/*
-		// create input for letter
-		var letterInput = document.createElement('input');
-		letterInput.type = 'text';
-		letterInput.maxLength = '1';
-		letterInput.classList.add('letter-input');
-		letterInput.oninput = function() {onInput(this)};
-
-		// add event listener for backspace
-		letterInput.addEventListener("keydown", function(event) {
-			// if it was backspace and not a flipped letter
-			if (event.key == "Backspace" && (this.classList.contains('flipped-letter') == false || this.classList.contains('correct-letter') == false)) {
-				console.log('this.value = ', this.value);
-				// if the current input is blank then backspace last one
-				if (this.value == "") {
-					var letterCard = this.parentNode;
-					var letterPosition = letterCard.id;
-					// if not first letter
-					if (letterPosition != 0) {
-						console.log('backspace pressed on ', letterPosition);
-						for (var i = letterPosition; i > 0; i--) {
-							var prevLetterCard = document.getElementById(i-1);
-							var prevLetterInput = prevLetterCard.getElementsByTagName('input')[0];
-							console.log('i: ', i, 'last letter value is ', prevLetterInput.value);
-							if (prevLetterInput.classList.contains('flipped-letter') == false && prevLetterInput.classList.contains('correct-letter') == false) {
-								prevLetterInput.value = '';
-								prevLetterInput.focus();
-								break;
-							}
-						}
-					// if first letter then do nothing
-					} else {
-						console.log('this.value == "", and letterPosition = 0');
-						this.focus();
-					}
-				} else {
-					this.value = '';
-					this.focus();
-				}
-			} else {
-				console.log('Pressed ', event.key, ' on ', this.parentNode.id);
-			}
-		})
-
-		letterCard.appendChild(letterInput);
-
-		// create button to "flip" (show letter and lock input)
-		var flipButton = document.createElement('button');
-		flipButton.classList.add('flip-btn');
-		flipButton.innerText = 'Flip';
-		flipButton.onclick = function() {flipLetterCard(this)};
-
-		letterCard.appendChild(flipButton);
-
-		wordContainer.appendChild(letterCard);
-	}
-
-	var firstInput = document.getElementById('0').getElementsByTagName('input')[0];
-	firstInput.focus();
-*/
-	}
 	guessInput.focus();
 }
 
 function flipLetterCard(letterCard) {
-	//numFlippedCards = numFlippedCards + 1;
 	if (gameWon == 1) {
 
 	} else {
@@ -186,30 +127,6 @@ function flipLetterCard(letterCard) {
 		var guessInput = document.getElementById('guess-input');
 		guessInput.focus();
 	}
-
-	/*
-
-	var letterCard = btn.parentNode;
-	var letterInput = letterCard.getElementsByTagName('input')[0];
-	var letterPosition = letterCard.id;
-
-	var correctLetter = correctWord[letterPosition];
-
-	letterInput.value = correctLetter;
-	letterInput.setAttribute('readonly', 'true');
-	letterInput.classList.add('flipped-letter');
-
-	// Put focus on first empty one
-	for (var i = 0; i < correctWord.length; i++) {
-		var eachLetterCard = document.getElementById(i);
-		var eachLetterInput = eachLetterCard.getElementsByTagName('input')[0];
-
-		if (eachLetterInput.value == '') {
-			eachLetterInput.focus();
-			break;
-		}
-	}
-	*/
 }
 
 function onInput (input) {
@@ -269,10 +186,10 @@ function checkGuess() {
 			flipEnabled = 0;
 			gameWon = 1;
 
-			input.setAttribute("disabled","true");
-			document.getElementById('guess-btn').setAttribute("disabled","true");
+			input.style.display = 'none';
+			document.getElementById('guess-btn').style.display = 'none';
 
-			message.innerHTML = 'You flipped ' + flippedLetters.length + ' tiles and made ' + numberOfGuesses + ' guesses.'
+			message.innerHTML = 'You flipped ' + flippedLetters.length + ' tiles and made ' + numberOfGuesses + ' guesses'
 			message.classList.remove('normal-message');
 			message.classList.remove('red-message');
 			message.classList.add('green-message');
