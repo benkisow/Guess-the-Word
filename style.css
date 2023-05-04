@@ -99,23 +99,6 @@ header {
 	user-select: none; /* Standard */
 }
 
-.flipped-letter {
-	color: white;
-	background-color: rgb(255, 102, 0);
-}
-
-.flip-btn {
-	height: 24px;
-	width: 60px;
-}
-
-.correct-letter {
-	color: green;
-}
-
-.wrong-letter {
-	color: red;
-}
 
 #guess-input {
 	font-size: 48px;
@@ -183,38 +166,159 @@ header {
 	margin: 10px auto 0 auto;
 }
 
+
+
+.letter-card {
+	display: inline-flex;
+	margin: 0 10px;
+	height: 90px;
+	font-size: 60px;
+	width: 62px;
+	border-radius: 4px;
+	justify-content: center;
+	align-content: center;
+	flex-wrap: wrap;
+	color: transparent;
+	background-color: rgb(34, 42, 53);
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+.winner-letter-card {
+	display: inline-flex;
+	margin: 0 10px;
+	height: 90px;
+	font-size: 60px;
+	width: 62px;
+	border-radius: 4px;
+	justify-content: center;
+	align-content: center;
+	flex-wrap: wrap;
+	color: white;
+	background-color: green;
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+.container {
+    width: 62px;
+    height: 90px;
+    border-radius: 4px;
+    margin: 0 10px;
+    position: relative;
+    display: inline-flex;
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    -o-perspective: 800px;
+    perspective: 800px;
+}
+.card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 4px;
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 50% 50%;
+}
+.card div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 90px;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 60px;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card .front {
+  background: var(--bkDarkBlue, black);
+}
+
+.card .back {
+    background: var(--bkOrange, dodgerblue);
+    -webkit-transform: rotateX( 180deg );
+    -moz-transform: rotateX( 180deg );
+    -o-transform: rotateX( 180deg );
+    transform: rotateX( 180deg );
+}
+
+.card .back-winner {
+	background: green;
+	-webkit-transform: rotateX( 180deg );
+    -moz-transform: rotateX( 180deg );
+    -o-transform: rotateX( 180deg );
+    transform: rotateX( 180deg );
+}
+
+.card.flipped-letter {
+    -webkit-transform: rotateX( 180deg );
+    -moz-transform: rotateX( 180deg );
+    -o-transform: rotateX( 180deg );
+    transform: rotateX( 180deg );
+}
+
 @media only screen and (max-width: 570px) {
-	.letter-card, .winner-letter-card {
+	.container {
 		width: 54px;
 		height: calc(52px * 1.5);
-		font-size: 52px;
 		margin: 0 8px;
+	}
+	.card div {
+		line-height: calc(52px * 1.5);
+		font-size: 52px;
 	}
 }
 
 @media only screen and (max-width: 500px) {
-	.letter-card, .winner-letter-card {
+	.container {
 		width: 44px;
 		height: calc(42px * 1.5);
-		font-size: 42px;
 		margin: 0 6px;
+	}
+	.card div {
+		line-height: calc(42px * 1.5);
+		font-size: 42px;
 	}
 }
 
 @media only screen and (max-width: 400px) {
-	.letter-card, .winner-letter-card {
+	.container {
 		width: 42px;
 		height: calc(40px * 1.5);
-		font-size: 40px;
 		margin: 0 4px;
+	}
+	.card div {
+		line-height: calc(40px * 1.5);
+		font-size: 40px;
 	}
 }
 
 @media only screen and (max-width: 360px) {
-	.letter-card, .winner-letter-card {
+	.container {
 		width: 36px;
 		height: calc(34px * 1.5);
-		font-size: 34px;
 		margin: 0 4px;
+	}
+	.card div {
+		line-height: calc(34px * 1.5);
+		font-size: 34px;
 	}
 }
