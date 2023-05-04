@@ -188,8 +188,20 @@ header {
 
 #play-again-btn {
 	display: none;
-	width: 120px;
-	margin: 10px auto 0 auto;
+	width: 200px;
+	padding: 8px;
+	margin: 10px auto;
+	font-size: 24px;
+	font-weight: bold;
+	background-color: var(--bkDarkBlue);
+	color: var(--bkOrange);
+	border: 1px solid white;
+	border-radius: 4px;
+}
+
+#play-again-btn:hover {
+	cursor: pointer;
+	box-shadow: 0 0 10px 10px var(--bkOrange);
 }
 
 #hamburger-menu-icon {

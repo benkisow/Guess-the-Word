@@ -22,7 +22,6 @@ String.prototype.shuffle = function() {
     return a.join("");
 }
 
-
 // Run startGame() function onload of the window
 window.onload = function() {
 	startGame();
