@@ -16,6 +16,7 @@ body {
 }
 
 header {
+	/*height: 60px;*/
 	margin-bottom: 20px;
 	padding: 10px;
 	border-bottom: 1px solid gray;
@@ -30,6 +31,12 @@ header {
 	/*height: auto;*/
 	/*position: fixed;*/
 	text-align: center;
+}
+
+#header-old {
+	margin-bottom: 20px;
+	padding: 10px;
+	border-bottom: 1px solid gray;
 }
 
 #word-container {
@@ -166,42 +173,23 @@ header {
 	margin: 10px auto 0 auto;
 }
 
-
-
-.letter-card {
-	display: inline-flex;
-	margin: 0 10px;
-	height: 90px;
-	font-size: 60px;
-	width: 62px;
-	border-radius: 4px;
-	justify-content: center;
-	align-content: center;
-	flex-wrap: wrap;
-	color: transparent;
-	background-color: rgb(34, 42, 53);
-	-webkit-user-select: none; /* Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+/Edge */
-	user-select: none; /* Standard */
+#hamburger-menu-icon {
+	height: 40px;
+	width: auto;
+	float: left;
 }
 
-.winner-letter-card {
-	display: inline-flex;
-	margin: 0 10px;
-	height: 90px;
-	font-size: 60px;
-	width: 62px;
-	border-radius: 4px;
-	justify-content: center;
+#info-icon {
+	height: 40px;
+	width: auto;
+	float: right;
+}
+
+#title {
+	height: 40px;
+	font-size: 40px;
+	text-align: center;
 	align-content: center;
-	flex-wrap: wrap;
-	color: white;
-	background-color: green;
-	-webkit-user-select: none; /* Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+/Edge */
-	user-select: none; /* Standard */
 }
 
 .container {

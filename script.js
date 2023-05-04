@@ -1,13 +1,14 @@
-// Create a list of words and pick one
+// CREATE GLOBAL VARIABLES
+// Create list of words
 var wordList = ['ABDUCT','BOARD','CAMERA','DRUG','FIELD','GUESS','HEAT','JOIN','LATER','METHOD','MONEY','NUMBER','OFTEN','PARENT','RESULT','SECOND','SEND','TEAM','THANK','VICTIM','WEAR','WRITER','YOUNG','JAZZ']
 
-var correctWord;
+var correctWord; // For storing correct word value
+var numberOfGuesses; // For storing how many guesses user has made
+var gameWon; // For storing whether the game has been won
+var flipEnabled; // For controlling whether the user can flip tiles
 
-var numberOfGuesses;
-var gameWon;
-var flipEnabled;
 
-// For shuffling the letters
+// Prototype for shuffling the letters of the word
 String.prototype.shuffle = function() {
 	var a = this.split(""),
         n = a.length;
@@ -21,28 +22,22 @@ String.prototype.shuffle = function() {
     return a.join("");
 }
 
+
+// Run startGame() function onload of the window
 window.onload = function() {
 	startGame();
 }
 
+
+// Function to flip tiles
 function flip(tile) {
-	/*
-	var tiles = document.getElementsByClassName('tile');
-
-	for (var i = 0; i < tiles.length; i++) {
-		if (tiles[i].classList.contains('flipped') == true) {
-			tiles[i].classList.remove('flipped');
-		} else {
-			tiles[i].classList.add('flipped');
-		}
-	} */
-	//var tile = document.getElementsByClassName('card')[0];
-
+	// Cannot flip tiles if game has been won
 	if (gameWon == 1) {
 
 	} else {
-		// add class
+		// Cannot flip tiles if flipEnabled = 0;
 		if (flipEnabled == 1) {
+			// Add class to tile to flip it
 			tile.classList.add('flipped-letter');
 			flipEnabled = 0;
 			document.getElementById('message').innerText = 'Now make a guess!'
@@ -54,78 +49,83 @@ function flip(tile) {
 			document.getElementById('message').classList.add('red-message');
 		}
 
+		// Put focus back on input
 		var guessInput = document.getElementById('guess-input');
 		guessInput.focus();
 	}
 }
 
+
+// Function to flip WINNER tiles
 function flipWinner(i) {
 	setTimeout(function() {
 		document.getElementById(i).classList.add('flipped-letter');
 	}, 200 * i)
 }
 
-//var numFlippedCards = 0;
 
+// Function to start the game
 function startGame() {
+	// Choose a random word from the list
 	var numberOfWords = wordList.length;
 	var randomNumber = Math.floor(Math.random() * numberOfWords);
-
 	correctWord = wordList[randomNumber];
 	console.log(correctWord);
 
+	// Hide the play again button if it is there
 	var playAgainBtn = document.getElementById('play-again-btn');
 	if (playAgainBtn != null) {
 		playAgainBtn.style.display = 'none';
 	}
 
+	// Set variables back to initial values to start game
 	flipEnabled = 1;
 	gameWon = 0;
 	numberOfGuesses = 0;
 
+	// Remove the table of guesses if it is there
 	var guessTable = document.getElementById('guess-table');
 	if (guessTable != null) {
 		guessTable.remove();
 	}
 
-	//var guessBtn = document.getElementById('guess-btn');
-	//guessBtn.displ;
-
-
+	// Update message
 	var message = document.getElementById('message');
 	message.classList.remove('red-message');
 	message.classList.remove('green-message');
 	message.classList.add('normal-message');
 	message.innerText = 'Start by making a guess or choosing a tile to flip';
 
-	// add event listener for enter
+	// Unhide input
 	var guessInput = document.getElementById('guess-input');
-
 	guessInput.style.display = 'block';
 
-	guessInput.addEventListener("keypress", function(event) {
-		// if it was backspace and not a flipped letter
-		if (event.key === "Enter") {
+	// Add event listener for ENTER
+	guessInput.addEventListener("keydown", function(event) {
+		console.log('key pressed');
+		// if its a repeat don't do anything
+		if (event.repeat == true) {
+			return
+		} else if (event.key === "Enter") {
+			console.log('key was enter');
 			event.preventDefault();
 			checkGuess();
 		}
+
 	})
 
-	// Get word container div
+	// Remove children from word-container div
 	var wordContainer = document.getElementById('word-container');
-
 	wordContainer.replaceChildren();
 
+	// Shuffle the word
 	var shuffledCorrectWord = correctWord.shuffle();
 	console.log(shuffledCorrectWord);
 
+	// Set the maxlength of the input to the length of the word
 	guessInput.setAttribute("maxlength", correctWord.length);
 
-	// CREATE TILE FOR EACH LETTER (DIV)
-	// CREATE SPAN WITHIN EACH DIV TO HOLD THE LETTER W/ DISPLAY: NONE
-	// ADD AN ONCLICK TO THE TILE (DIV) TO REVEAL THE LETTER
-
-	// For each letter of the word, add a div
+	// For each letter of the word, add a tile
 	for (var i = 0; i < shuffledCorrectWord.length; i++) {
 		// create container div
 		var tileContainerDiv = document.createElement('div');
@@ -133,6 +133,7 @@ function startGame() {
 		tileContainerDiv.classList.add('container');
 		// append to wordContainer
 		wordContainer.appendChild(tileContainerDiv);
+
 		// create card div
 		var tileDiv = document.createElement('div');
 		// give class
@@ -141,12 +142,14 @@ function startGame() {
 		tileDiv.onclick = function() {flip(this);}
 		// append to container div
 		tileContainerDiv.appendChild(tileDiv);
+
 		// create front div
 		var frontDiv = document.createElement('div');
 		// give class
 		frontDiv.classList.add('front');
 		// append to card div
 		tileDiv.appendChild(frontDiv);
+
 		// create back div
 		var backDiv = document.createElement('div');
 		// give class
@@ -158,58 +161,13 @@ function startGame() {
 		// append to card div
 		tileDiv.appendChild(backDiv);
 	}
+	// Put focus back on input
 	guessInput.focus();
 }
 
-function flipLetterCard(letterCard) {
-	//numFlippedCards = numFlippedCards + 1;
-	if (gameWon == 1) {
 
-	} else {
-		// add class
-		if (flipEnabled == 1) {
-			letterCard.classList.add('flipped-letter');
-			flipEnabled = 0;
-			document.getElementById('message').innerText = 'Now make a guess!'
-			document.getElementById('message').classList.remove('red-message');
-			document.getElementById('message').classList.add('normal-message');
-		} else {
-			document.getElementById('message').innerText = 'You have to make a guess before flipping another tile!'
-			document.getElementById('message').classList.remove('normal-message');
-			document.getElementById('message').classList.add('red-message');
-		}
-
-		var guessInput = document.getElementById('guess-input');
-		guessInput.focus();
-	}
-
-	/*
-
-	var letterCard = btn.parentNode;
-	var letterInput = letterCard.getElementsByTagName('input')[0];
-	var letterPosition = letterCard.id;
-
-	var correctLetter = correctWord[letterPosition];
-
-	letterInput.value = correctLetter;
-	letterInput.setAttribute('readonly', 'true');
-	letterInput.classList.add('flipped-letter');
-
-	// Put focus on first empty one
-	for (var i = 0; i < correctWord.length; i++) {
-		var eachLetterCard = document.getElementById(i);
-		var eachLetterInput = eachLetterCard.getElementsByTagName('input')[0];
-
-		if (eachLetterInput.value == '') {
-			eachLetterInput.focus();
-			break;
-		}
-	}
-	*/
-}
-
+// Function to make sure input only accepts letters
 function onInput (input) {
-	// if it passes regex
 	if (!/^[a-zA-Z]*$/g.test(input.value)) {
 	        input.value = input.value.replace(/[^a-zA-Z]/g, '');
 	        input.focus();
@@ -217,8 +175,11 @@ function onInput (input) {
 	}
 }
 
+
+// Function to check if guess is correct
 function checkGuess() {
 	console.log('checkGuess running');
+
 	// get input value
 	var input = document.getElementById('guess-input');
 	var inputValue = input.value.toUpperCase();
@@ -229,6 +190,7 @@ function checkGuess() {
 
 	// check if value is long enough
 	if (inputValue.length == correctWord.length) {
+		// clear input
 		input.value = '';
 
 		// get guess container
@@ -250,6 +212,7 @@ function checkGuess() {
 			var guessTable = document.getElementById('guess-table');
 		}
 
+		// get which letters have been flipped
 		var flippedLetters = '';
 		var flippedLetterCards = document.getElementsByClassName('flipped-letter');
 
@@ -263,17 +226,20 @@ function checkGuess() {
 
 			// youWin();
 
+			// Set variables for game being won
 			flipEnabled = 0;
 			gameWon = 1;
 
+			// Hide input
 			input.style.display = 'none';
 
+			// Update message
 			message.innerHTML = 'You flipped ' + flippedLetters.length + ' tiles and made ' + numberOfGuesses + ' guesses.'
 			message.classList.remove('normal-message');
 			message.classList.remove('red-message');
 			message.classList.add('green-message');
 
-			// create a row
+			// Create a row in guessTable
 			var guessTableRow = document.createElement('tr');
 			guessTableRow.innerHTML = '<td class="guess-num correct-guess">' + numberOfGuesses + '</td><td class="guess-value correct-guess">' + inputValue + '</td><td class="guess-flipped-letters correct-guess">' + flippedLetters + '</td>';
 
@@ -284,31 +250,9 @@ function checkGuess() {
 
 			wordContainer.replaceChildren();
 
+			// Add WINNER tiles to word container
 			var winnerMessage = 'WINNER';
 
-			// CREATE TILE FOR EACH LETTER (DIV)
-			// CREATE SPAN WITHIN EACH DIV TO HOLD THE LETTER W/ DISPLAY: NONE
-			// ADD AN ONCLICK TO THE TILE (DIV) TO REVEAL THE LETTER
-
-			// For each letter of the word, add a div
-			/*
-			for (var i = 0; i < winnerMessage.length; i++) {
-				// create letter card
-				var letterCard = document.createElement('div');
-				letterCard.id = 'L' + i;
-				letterCard.onclick = function() {flipLetterCard(this);};
-				letterCard.classList.add('winner-letter-card');
-
-				// create text node with the letter in it
-				var letterValue = winnerMessage[i];
-				var letterTextNode = document.createTextNode(letterValue);
-
-				letterCard.appendChild(letterTextNode);
-
-				wordContainer.appendChild(letterCard);
-			}
-			*/
-//========================================================================================
 			for (var i = 0; i < winnerMessage.length; i++) {
 				// create container div
 				var tileContainerDiv = document.createElement('div');
@@ -343,22 +287,24 @@ function checkGuess() {
 				// append to card div
 				tileDiv.appendChild(backDiv);
 
+				// flip each tile
 				flipWinner(i);
 			}
-//=========================================================================================
 
+			// unhide play again button
 			var playAgainBtn = document.getElementById('play-again-btn');
 			playAgainBtn.style.display = 'block';
 
 			playAgainBtn.focus();
 
 		} else {
+			// Update message for wrong guess
 			message.innerHTML = 'Its not ' + inputValue + '! Flip another tile and/or guess again.'
 			message.classList.remove('normal-message');
 			message.classList.remove('green-message');
 			message.classList.add('red-message');
 
-			// create a row
+			// create a row in guessTable
 			var guessTableRow = document.createElement('tr');
 			guessTableRow.innerHTML = '<td class="guess-num">' + numberOfGuesses + '</td><td class="guess-value">' + inputValue + '</td><td class="guess-flipped-letters">' + flippedLetters + '</td>';
 
@@ -368,95 +314,13 @@ function checkGuess() {
 		// turn flip back on
 		flipEnabled = 1;
 	} else {
+		// Update message for guess not long enough
 		message.innerText = 'Guess must be a ' + correctWord.length + '-letter word!';
 		message.classList.remove('normal-message');
 		message.classList.remove('green-message');
 		message.classList.add('red-message');
 
+		// Put focus back on input
 		input.focus();
 	}
-
-	
-
-
-/*
-	for (let i = 0; i < correctWord.length; i++) {
-		var letterCard = document.getElementById(i);
-		var letterInput = letterCard.getElementsByTagName('input')[0];
-
-		var letterGuess = letterInput.value.toUpperCase();
-
-		var correctLetter = correctWord[i];
-
-		if (letterGuess == correctLetter) {
-			numCorrectLetters = numCorrectLetters + 1;
-			letterInput.classList.remove('flipped-letter');
-			letterInput.classList.add('correct-letter');
-			letterInput.setAttribute("readonly", "true");
-		} else {
-			letterInput.classList.add('wrong-letter');
-			letterInput.setAttribute("readonly", "true");
-			clearWrongLetters(i);
-		}
-	}
-
-	if (numCorrectLetters == correctWord.length) {
-		alert('You Win!');
-	}
-	*/
 }
-
-function clearWrongLetters(i) {
-	setTimeout(function() {
-		var letterCard = document.getElementById(i);
-		var letterInput = letterCard.getElementsByTagName('input')[0];
-		letterInput.classList.remove('wrong-letter');
-		letterInput.value = '';
-		letterInput.removeAttribute("readonly");
-
-		// Put focus on first blank one
-		var firstInput = document.getElementById('0').getElementsByTagName('input')[0];
-
-		if (firstInput.value == '') {
-			firstInput.focus();
-		} else {
-			var index = 0;
-
-			while (index < correctWord.length) {
-				var nextOne = String(index + 1);
-
-				var nextOneCard = document.getElementById(nextOne);
-				var nextLetterInput = nextOneCard.getElementsByTagName('input')[0];
-
-				if (nextLetterInput.value == '') {
-					nextLetterInput.focus();
-					break;
-				}
-
-				index++;
-			}
-		}
-	}, 1000);
-}
-
-/*
-// Add guess button when all inputs have values
-setInterval(function() {
-	var nonBlankInputs = 0;
-
-	for (var i = 0; i < correctWord.length; i++) {
-		var eachLetterCard_global = document.getElementById(i);
-		var eachLetterInput_global = eachLetterCard_global.getElementsByTagName('input')[0];
-
-		if (eachLetterInput_global.value != '') {
-			var nonBlankInputs = nonBlankInputs + 1;
-		}
-	}
-
-	if (nonBlankInputs == correctWord.length) {
-		document.getElementById('guess-btn').style.display = 'block';
-	} else {
-		document.getElementById('guess-btn').style.display = 'none';
-	}
-}, 10);
-*/
