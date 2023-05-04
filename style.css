@@ -17,26 +17,79 @@ body {
 
 header {
 	/*height: 60px;*/
-	margin-bottom: 20px;
 	padding: 10px;
 	border-bottom: 1px solid gray;
 }
 
 /* ID's and Classes */
+#outer-container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 0;
+}
+
+#menu-panel {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	max-width: 400px;
+	background-color: var(--bkDarkBlue);
+}
+
+#info-panel {
+	position: fixed;
+	width: 80%;
+	left: 10%;
+	top: 15%;
+	background-color: var(--bkDarkBlue);
+	border: 2px solid white;
+	z-index: 10;
+	padding: 10px;
+	display: none;
+}
+
+@media only screen and (min-width: 625px) {
+	#info-panel {
+		width: 500px;
+		left: calc((100% - 500px)/2);
+	}
+}
+
+#info-panel h1 {
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+#info-panel h3 {
+	color: var(--bkOrange);
+	margin-bottom: 5px;
+}
+
+#info-panel ul {
+	padding-left: 20px;
+}
+
+#info-panel-close {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: var(--bkOrange);
+}
+
+#info-panel-close:hover {
+	cursor: pointer;
+}
+
 #main-container {
 	/*border: 1px solid red;*/
 	width: 90%;
 	/*left: 5%;*/
-	margin: 0 auto 40px auto;
+	margin: 20px auto 40px auto;
 	/*height: auto;*/
 	/*position: fixed;*/
 	text-align: center;
-}
-
-#header-old {
-	margin-bottom: 20px;
-	padding: 10px;
-	border-bottom: 1px solid gray;
 }
 
 #word-container {
@@ -60,58 +113,14 @@ header {
 	height: auto;
 	text-align: center;
 }
-/*
-.letter-card {
-	border: 1px solid green;
-	height: fit-content;
-	margin: auto 10px;
-	text-align: center;
-	padding: 10px;
-	flex: 1;
-} */
-
-.letter-card {
-	display: inline-flex;
-	margin: 0 10px;
-	height: 90px;
-	font-size: 60px;
-	width: 62px;
-	border-radius: 4px;
-	justify-content: center;
-	align-content: center;
-	flex-wrap: wrap;
-	color: transparent;
-	background-color: rgb(34, 42, 53);
-	-webkit-user-select: none; /* Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+/Edge */
-	user-select: none; /* Standard */
-}
-
-.winner-letter-card {
-	display: inline-flex;
-	margin: 0 10px;
-	height: 90px;
-	font-size: 60px;
-	width: 62px;
-	border-radius: 4px;
-	justify-content: center;
-	align-content: center;
-	flex-wrap: wrap;
-	color: white;
-	background-color: green;
-	-webkit-user-select: none; /* Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+/Edge */
-	user-select: none; /* Standard */
-}
-
 
 #guess-input {
 	font-size: 48px;
 	min-width: 0;
 	width: 100%;
+	max-width: 400px;
 	text-align: center;
+	margin: 0 auto;
 	text-transform: uppercase;
 	background-color: rgb(34, 42, 53);
 	color: white;
@@ -121,19 +130,25 @@ header {
 }
 
 #guess-table {
-	width: 50%;
+	width: 80%;
+	max-width: 400px;
 	margin: 20px auto;
 	border-collapse: collapse;
 }
 
+#guess-table th {
+	padding-bottom: 5px;
+}
+
 #guess-table tr {
-	border-bottom: 1px solid white;
+	border: 1px solid white;
 }
 
 .guess-num {
 	color: gray;
 	text-align: left;
 	width: 25%;
+	padding-left: 8px;
 }
 
 .guess-value {
@@ -141,16 +156,20 @@ header {
 }
 
 .correct-guess {
-	color: green;
+	background-color: green;
+	color: white;
+	font-weight: bold;
 }
 
 .guess-flipped-letters {
 	text-align: right;
 	width: 30%;
+	padding-right: 8px;
 }
 
 #message {
 	margin: 10px 0;
+	width: 100%;
 }
 
 .normal-message {
@@ -185,11 +204,15 @@ header {
 	float: right;
 }
 
+#info-icon:hover {
+	cursor: pointer;
+}
+
+
 #title {
 	height: 40px;
 	font-size: 40px;
 	text-align: center;
-	align-content: center;
 }
 
 .container {
@@ -263,6 +286,49 @@ header {
     transform: rotateX( 180deg );
 }
 
+#winner-stat-div {
+	background-color: var(--bkDarkBlue);
+	width: 472px;
+	margin: 20px auto auto auto;
+	height: 100%;
+	padding: 8px;
+	border-radius: 4px;
+	border: 2px solid white;
+	overflow: hidden;
+}
+
+.stat-divs {
+	background-color: var(--bkLightBlue);
+	padding: 8px;
+	border-radius: 4px;
+}
+
+.stat-divs p {
+	color: var(--bkOrange);
+	margin-bottom: 4px;
+	font-size: 20px;
+}
+
+#correct-word-stat {
+	width: 100%;
+	margin-bottom: 8px;
+	font-size: 40px;
+}
+
+#guesses-made-stat {
+	width: calc(50% - 4px);
+	margin-left: 4px;
+	float: right;
+	font-size: 60px;
+}
+
+#tiles-flipped-stat {
+	width: calc(50% - 4px);
+	margin-right: 4px;
+	float: left;
+	font-size: 60px;
+}
+
 @media only screen and (max-width: 570px) {
 	.container {
 		width: 54px;
@@ -272,6 +338,9 @@ header {
 	.card div {
 		line-height: calc(52px * 1.5);
 		font-size: 52px;
+	}
+	#winner-stat-div {
+		width: 400px;
 	}
 }
 
@@ -285,6 +354,12 @@ header {
 		line-height: calc(42px * 1.5);
 		font-size: 42px;
 	}
+	#winner-stat-div {
+		width: 316px;
+	}
+	.stat-divs p {
+	font-size: 16px;
+	}
 }
 
 @media only screen and (max-width: 400px) {
@@ -297,6 +372,12 @@ header {
 		line-height: calc(40px * 1.5);
 		font-size: 40px;
 	}
+	#winner-stat-div {
+		width: 280px;
+	}
+	.stat-divs p {
+	font-size: 14px;
+	}
 }
 
 @media only screen and (max-width: 360px) {
@@ -308,5 +389,11 @@ header {
 	.card div {
 		line-height: calc(34px * 1.5);
 		font-size: 34px;
+	}
+	#winner-stat-div {
+		width: 244px;
+	}
+	.stat-divs p {
+	font-size: 12px;
 	}
 }

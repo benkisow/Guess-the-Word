@@ -29,6 +29,29 @@ window.onload = function() {
 }
 
 
+// Function to open info panel
+function openInfo() {
+	document.getElementById('info-panel').style.display = 'block';
+}
+
+
+// Function to close info panel
+function closeInfo() {
+	document.getElementById('info-panel').style.display = 'none';
+}
+
+// Function to open/close info panel
+function toggleInfo() {
+	infoPanel = document.getElementById('info-panel');
+
+	if (infoPanel.style.display == 'block') {
+		infoPanel.style.display = 'none';
+	} else {
+		infoPanel.style.display = 'block';
+	}
+}
+
+
 // Function to flip tiles
 function flip(tile) {
 	// Cannot flip tiles if game has been won
@@ -72,6 +95,12 @@ function startGame() {
 	correctWord = wordList[randomNumber];
 	console.log(correctWord);
 
+	// Remove the winner stats if they are there
+	var winnerStatDiv = document.getElementById('winner-stat-div');
+	if (winnerStatDiv != null) {
+		winnerStatDiv.remove();
+	}
+
 	// Hide the play again button if it is there
 	var playAgainBtn = document.getElementById('play-again-btn');
 	if (playAgainBtn != null) {
@@ -91,6 +120,7 @@ function startGame() {
 
 	// Update message
 	var message = document.getElementById('message');
+	message.style.display = 'block';
 	message.classList.remove('red-message');
 	message.classList.remove('green-message');
 	message.classList.add('normal-message');
@@ -100,19 +130,22 @@ function startGame() {
 	var guessInput = document.getElementById('guess-input');
 	guessInput.style.display = 'block';
 
-	// Add event listener for ENTER
-	guessInput.addEventListener("keydown", function(event) {
-		console.log('key pressed');
-		// if its a repeat don't do anything
-		if (event.repeat == true) {
-			return
-		} else if (event.key === "Enter") {
-			console.log('key was enter');
-			event.preventDefault();
-			checkGuess();
-		}
-
-	})
+	// Add event listener for ENTER to input
+	if (guessInput.getAttribute('enter-keydown-listener') !== 'true') {
+		guessInput.addEventListener("keydown", function(event) {
+			console.log('key pressed');
+			// if its a repeat don't do anything
+			if (event.repeat == true) {
+				return
+			} else if (event.key === "Enter") {
+				console.log('key was enter');
+				event.preventDefault();
+				checkGuess();
+			}
+		})
+		guessInput.setAttribute('enter-keydown-listener', 'true');
+	}
+	
 
 	// Remove children from word-container div
 	var wordContainer = document.getElementById('word-container');
@@ -207,6 +240,12 @@ function checkGuess() {
 			var guessTable = document.createElement('table');
 			guessTable.id = 'guess-table';
 
+			var guessTableHeader = document.createElement('th');
+			guessTableHeader.colSpan = "3";
+			guessTableHeader.innerText = "All Guesses";
+
+			guessTable.appendChild(guessTableHeader);
+
 			guessContainer.appendChild(guessTable);
 		} else {
 			var guessTable = document.getElementById('guess-table');
@@ -215,10 +254,12 @@ function checkGuess() {
 		// get which letters have been flipped
 		var flippedLetters = '';
 		var flippedLetterCards = document.getElementsByClassName('flipped-letter');
+		var numberFlipped = 0;
 
 		for (var i = 0; i < flippedLetterCards.length; i++) {
 			var letterValue = flippedLetterCards[i].innerText;
-			flippedLetters += letterValue;
+			flippedLetters += ' ' + letterValue;
+			numberFlipped = numberFlipped + 1;
 		}
 
 		if (inputValue == correctWord) {
@@ -234,10 +275,13 @@ function checkGuess() {
 			input.style.display = 'none';
 
 			// Update message
-			message.innerHTML = 'You flipped ' + flippedLetters.length + ' tiles and made ' + numberOfGuesses + ' guesses.'
-			message.classList.remove('normal-message');
-			message.classList.remove('red-message');
-			message.classList.add('green-message');
+			//message.innerHTML = 'You flipped ' + flippedLetters.length + ' tiles and made ' + numberOfGuesses + ' guesses.'
+			//message.classList.remove('normal-message');
+			//message.classList.remove('red-message');
+			//message.classList.add('green-message');
+
+			// Hide message
+			message.style.display = 'none';
 
 			// Create a row in guessTable
 			var guessTableRow = document.createElement('tr');
@@ -290,6 +334,30 @@ function checkGuess() {
 				// flip each tile
 				flipWinner(i);
 			}
+
+			// create div for stats
+			var winnerStatDiv = document.createElement('div');
+			winnerStatDiv.id = 'winner-stat-div';
+
+			var correctWordStat = document.createElement('div');
+			correctWordStat.id = 'correct-word-stat';
+			correctWordStat.classList.add('stat-divs');
+			correctWordStat.innerHTML = '<p>Correct Word</p>' + correctWord;
+
+			var tilesFlippedStat = document.createElement('div');
+			tilesFlippedStat.id = 'tiles-flipped-stat';
+			tilesFlippedStat.classList.add('stat-divs');
+			tilesFlippedStat.innerHTML = '<p>Tiles Flipped</p>' + numberFlipped;
+
+			var guessesMadeStat = document.createElement('div');
+			guessesMadeStat.id = 'guesses-made-stat';
+			guessesMadeStat.classList.add('stat-divs');
+			guessesMadeStat.innerText = numberOfGuesses;
+			guessesMadeStat.innerHTML = '<p>Guesses Made</p>' + numberOfGuesses;
+
+			winnerStatDiv.replaceChildren(correctWordStat, tilesFlippedStat, guessesMadeStat);
+
+			guessContainer.parentNode.insertBefore(winnerStatDiv, guessContainer);
 
 			// unhide play again button
 			var playAgainBtn = document.getElementById('play-again-btn');

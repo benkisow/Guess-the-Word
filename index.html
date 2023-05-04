@@ -15,42 +15,54 @@
 
 	<!-- Header -->
 	<header>
-		<img id="info-icon" alt="info-icon" src="info-icon.png"/>
+		<img id="info-icon" alt="info-icon" src="info-icon.png" onclick="toggleInfo();"/>
 		<img id="hamburger-menu-icon" alt="hamburger-menu-icon" src="hamburger-menu-icon.png"/>
 		<div id="title">
-			Guess the Word
+			Flip'd
 		</div>
 	</header>
 
-	<!-- Header -->
-	<div id="header-old">
-		<h1>Guess the Word</h1>
-		<p>In Guess the Word, a random word is selected whenever you load the page. Tiles appear for each letter of the chosen word. The tiles are in random order, NOT the order of the word! Try to guess the word by flipping over as few tiles as possible!</p>
-		<br>
-		<h4>Rules</h4>
-		<ol>
-			<li>You may only flip one tile at a time without guessing</li>
-			<li>You may guess as many times as you'd like without flipping a tile</li>
-		</ol>
-	</div>
+	<div id="outer-container">
 
-	<!-- Main container -->
-	<div id="main-container">
-
-		<span id="message" class="normal-message">Hello! Start by making a guess or choosing a tile to flip</span>
-		<br>
-		<button id="play-again-btn" onclick="startGame();">Play Again</button>
-
-		<!-- Container for the word to live in -->
-		<div id="word-container">
+		<!--
+		<div id="menu-panel">
 		</div>
+		-->
 
-		<div id="guess-container">
-			<input type="text" id="guess-input" placeholder="Guess..." oninput="onInput(this);"/>
+		<div id="info-panel">
+			<span id="info-panel-close" onclick="toggleInfo();">X</span>
+			<h1>Flip'd</h1>
+			<h3>Playing the Game</h3>
+			<ul>
+				<li>Tap or click on a tile to reveal it's letter</li>
+				<li>Type guesses and press Enter to submit</li>
+				<li>Try to guess the word in as few guesses as possible!</li>
+			</ul>
 			<br>
-			<!--<button id="guess-btn" onclick="checkGuess();">Enter</button>-->
+			<h3>Rules</h3>
+			<ul>
+				<li>You may only flip one tile at a time without guessing</li>
+				<li>You may guess as many times as you'd like without flipping a tile</li>
+			</ul>
 		</div>
 
+		<!-- Main container -->
+		<div id="main-container">
+
+			<span id="message" class="normal-message">Hello! Start by making a guess or choosing a tile to flip</span>
+			<button id="play-again-btn" onclick="startGame();">Play Again</button>
+
+			<!-- Container for the word to live in -->
+			<div id="word-container">
+			</div>
+
+			<div id="guess-container">
+				<input type="text" id="guess-input" placeholder="Guess..." oninput="onInput(this);"/>
+				<br>
+				<!--<button id="guess-btn" onclick="checkGuess();">Enter</button>-->
+			</div>
+
+		</div>
 	</div>
 
 </body>
