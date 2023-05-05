@@ -5,10 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta lang="en">
 
-	<title>Guess the Word</title>
+	<title>Flip'd</title>
 
 	<link rel="stylesheet" type="text/css" href="style.css"/>
-	<script type="text/javascript" src="script.js"></script>
 
 </head>
 <body>
@@ -22,61 +21,153 @@
 		</div>
 	</header>
 
-	<div id="outer-container">
+	<div id="info-panel">
+		<span id="info-panel-close" onclick="toggleInfo();">&times;</span>
+		<h1>Flip'd</h1>
+		<h3>Easy</h3>
+			<p>Tiles are shown in the correct order</p>
+			<div class="word-container-info-panel">
+				<div class="container">
+					<div class="card 1">
+						<div class="front"></div>
+						<div class="back">F</div>
+					</div>
+				</div>
 
-		<!--
-		<div id="menu-panel">
-		</div>
-		-->
+				<div class="container">
+					<div class="card 2">
+						<div class="front"></div>
+						<div class="back">L</div>
+					</div>
+				</div>
 
-		<div id="info-panel">
-			<span id="info-panel-close" onclick="toggleInfo();">X</span>
-			<h1>Flip'd</h1>
-			<h3>Playing the Game</h3>
-			<ul>
-				<li>Tap or click on a tile to reveal it's letter</li>
-				<li>Type guesses and press Enter to submit</li>
-				<li>Try to guess the word in as few guesses as possible!</li>
-			</ul>
-			<br>
-			<h3>Rules</h3>
-			<ul>
-				<li>You may only flip one tile at a time without guessing</li>
-				<li>You may guess as many times as you'd like without flipping a tile</li>
-			</ul>
-		</div>
+				<div class="container">
+					<div class="card 3">
+						<div class="front"></div>
+						<div class="back">I</div>
+					</div>
+				</div>
 
-		<!-- Main container -->
-		<div id="main-container">
+				<div class="container">
+					<div class="card 4">
+						<div class="front"></div>
+						<div class="back">P</div>
+					</div>
+				</div>
 
-			<span id="message" class="normal-message">Hello! Start by making a guess or choosing a tile to flip</span>
-			<button id="play-again-btn" onclick="startGame();">Play Again!</button>
+				<div class="container">
+					<div class="card 5">
+						<div class="front"></div>
+						<div class="back">D</div>
+					</div>
+				</div>
 
-			<!-- Container for the word to live in -->
-			<div id="word-container">
 			</div>
 
-			<div id="guess-container">
-				<input type="text" id="guess-input" placeholder="Guess..." oninput="onInput(this);"/>
-				<br>
-				<!--<button id="guess-btn" onclick="checkGuess();">Enter</button>-->
+		<br>
+
+		<h3>Hard</h3>
+			<p>Tiles are shown in a random order</p>
+			<div class="word-container-info-panel">
+				<div class="container">
+					<div class="card 1">
+						<div class="front"></div>
+						<div class="back">I</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="card 2">
+						<div class="front"></div>
+						<div class="back">P</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="card 3">
+						<div class="front"></div>
+						<div class="back">F</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="card 4">
+						<div class="front"></div>
+						<div class="back">L</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="card 5">
+						<div class="front"></div>
+						<div class="back">D</div>
+					</div>
+				</div>
+
 			</div>
 
-		</div>
+
 	</div>
+
+	<!-- Main container -->
+	<div id="main-container">
+
+		<div id="welcome">
+			<h1>Welcome to Flip'd!</h1>
+			<p>Start by choosing a game mode to play</p>
+		</div>
+
+		<div class="game-mode" onclick="openGameMode('easy');">
+			<h1>Easy</h1>
+		</div>
+
+		<div class="game-mode" onclick="openGameMode('hard');">
+			<h1>Hard</h1>
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+		// Function to open/close info panel
+		function toggleInfo() {
+			infoPanel = document.getElementById('info-panel');
+
+			if (infoPanel.style.display == 'block') {
+				infoPanel.style.display = 'none';
+				var tiles = document.getElementsByClassName('card');
+
+				for (var k = 0; k < tiles.length; k++) {
+					tiles[k].classList.remove('flipped-letter');
+				}
+
+			} else {
+				infoPanel.style.display = 'block';
+
+				for (var i = 1; i < 6; i++) {
+					flipTiles(i);
+				}
+			}
+		}
+
+		// Function to flip example tiles in info panel
+		function flipTiles(i) {
+			setTimeout(function() {
+				var elements;
+
+				elements = document.getElementsByClassName(i);
+
+				for (var j = 0; j < elements.length; j++) {
+					elements[j].classList.add('flipped-letter')
+				}
+			}, 200 * i)
+		}
+
+		// Function to open link with parameter for easy/hard mode
+		function openGameMode(mode) {
+			var gameMode = mode;
+			window.location.href = "game.html?mode=" + mode;
+		}
+	</script>
 
 </body>
 </html>
-
-<!-- Concept
-	1. Random word is chosen
-	2. You know how many letters, but not which ones
-	3. First letter is flipped
-	4. Guess a n letter word with that letter
-	5. If wrong, flip another one
-
-	Ideas
-	1. Whole screen red/green when you lose/win
-	2. Have sound/have a voice say something
-	3. Different levels of difficulty (word length, difficulty) m,
--->

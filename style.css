@@ -73,7 +73,8 @@ header {
 
 #info-panel-close {
 	position: absolute;
-	top: 5px;
+	font-size: 200%;
+	top: 0;
 	right: 5px;
 	color: var(--bkOrange);
 }
@@ -92,6 +93,17 @@ header {
 	text-align: center;
 }
 
+#welcome h1, p {
+	margin-bottom: 20px;
+}
+
+#home-link {
+	color: var(--bkOrange);
+	font-size: 80%;
+	text-align: left;
+	margin: 8px;
+}
+
 #word-container {
 	/*border: 1px solid blue;*/
 	/*position: relative;
@@ -104,6 +116,22 @@ header {
 	justify-content: center;
 	flex-wrap: wrap;
 	align-items: center;
+}
+
+.word-container-info-panel {
+	/*border: 1px solid blue;*/
+	/*position: relative;
+	top: 0;*/
+	background-color: var(--bkLightBlue);
+	width: 100%;
+	/*height: 40%;*/
+	padding: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+	border-radius: 4px;
 }
 
 #guess-container {
@@ -203,6 +231,8 @@ header {
 	cursor: pointer;
 	box-shadow: 0 0 10px 10px var(--bkOrange);
 }
+
+/* filter: blur(2px); */
 
 #hamburger-menu-icon {
 	height: 40px;
@@ -341,6 +371,25 @@ header {
 	font-size: 60px;
 }
 
+.game-mode {
+	background-color: var(--bkDarkBlue);
+	margin: 8px;
+	width: 40%;
+	display: inline-block;
+	border-radius: 8px;
+	border: 2px solid white;
+	padding: 10px;
+}
+
+.game-mode:hover {
+	cursor: pointer;
+	box-shadow: 0 0 10px 10px var(--bkOrange);
+}
+
+.game-mode h1 {
+	color: var(--bkOrange);
+}
+
 @media only screen and (max-width: 570px) {
 	.container {
 		width: 54px;
@@ -390,6 +439,9 @@ header {
 	.stat-divs p {
 	font-size: 14px;
 	}
+	.game-mode {
+		width: 80%;
+	}
 }
 
 @media only screen and (max-width: 360px) {
@@ -407,5 +459,8 @@ header {
 	}
 	.stat-divs p {
 	font-size: 12px;
+	}
+	.game-mode {
+		width: 80%;
 	}
 }

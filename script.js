@@ -8,6 +8,12 @@ var gameWon; // For storing whether the game has been won
 var flipEnabled; // For controlling whether the user can flip tiles
 
 
+// Find game mode
+var queryString = window.location.search;
+var urlParams = new URLSearchParams(queryString);
+var gameMode = urlParams.get('mode');
+
+
 // Prototype for shuffling the letters of the word
 String.prototype.shuffle = function() {
 	var a = this.split(""),
@@ -21,6 +27,7 @@ String.prototype.shuffle = function() {
     }
     return a.join("");
 }
+
 
 // Run startGame() function onload of the window
 window.onload = function() {
@@ -151,8 +158,13 @@ function startGame() {
 	wordContainer.replaceChildren();
 
 	// Shuffle the word
-	var shuffledCorrectWord = correctWord.shuffle();
-	console.log(shuffledCorrectWord);
+	if (gameMode == 'hard') {
+		var shuffledCorrectWord = correctWord.shuffle();
+		console.log(shuffledCorrectWord);
+	} else {
+		var shuffledCorrectWord = correctWord;
+	}
+
 
 	// Set the maxlength of the input to the length of the word
 	guessInput.setAttribute("maxlength", correctWord.length);

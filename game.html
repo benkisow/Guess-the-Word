@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta lang="en">
+
+	<title>Flip'd</title>
+
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<script type="text/javascript" src="script.js"></script>
+
+</head>
+<body>
+
+	<!-- Header -->
+	<header>
+		<img id="info-icon" alt="info-icon" src="info-icon.png" onclick="toggleInfo();"/>
+		<img id="hamburger-menu-icon" alt="hamburger-menu-icon" src="hamburger-menu-icon.png"/>
+		<div id="title">
+			Flip'd
+		</div>
+	</header>
+
+	<div id="outer-container">
+
+		<!--
+		<div id="menu-panel">
+		</div>
+		-->
+
+		<div id="info-panel">
+			<span id="info-panel-close" onclick="toggleInfo();">&times;</span>
+			<h1>Flip'd</h1>
+			<h3>Playing the Game</h3>
+			<ul>
+				<li>Tap or click on a tile to reveal it's letter</li>
+				<li>Type guesses and press Enter to submit</li>
+				<li>Try to guess the word in as few guesses as possible!</li>
+			</ul>
+			<br>
+			<h3>Rules</h3>
+			<ul>
+				<li>You may only flip one tile at a time without guessing</li>
+				<li>You may guess as many times as you'd like without flipping a tile</li>
+			</ul>
+		</div>
+
+		<a id="home-link" href="index.html"/>Home Page</a>
+
+		<!-- Main container -->
+		<div id="main-container">
+
+			<span id="message" class="normal-message">Hello! Start by making a guess or choosing a tile to flip</span>
+			<button id="play-again-btn" onclick="startGame();">Play Again!</button>
+
+			<!-- Container for the word to live in -->
+			<div id="word-container">
+			</div>
+
+			<div id="guess-container">
+				<input type="text" id="guess-input" placeholder="Guess..." oninput="onInput(this);"/>
+				<br>
+				<!--<button id="guess-btn" onclick="checkGuess();">Enter</button>-->
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>
+
+<!-- Concept
+	1. Random word is chosen
+	2. You know how many letters, but not which ones
+	3. First letter is flipped
+	4. Guess a n letter word with that letter
+	5. If wrong, flip another one
+
+	Ideas
+	1. Whole screen red/green when you lose/win
+	2. Have sound/have a voice say something
+	3. Different levels of difficulty (word length, difficulty) m,
+-->
